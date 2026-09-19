@@ -20,8 +20,13 @@
             "label": "leetgo pick",
             "detail": "輸入題號或 slug，產生 solution.cpp 並在 VSCode 開啟（Ctrl+Alt+P）",
             "type": "shell",
-            "command": "leetgo",
-            "args": ["pick", "${input:problem}"],
+            "command": "pwsh",
+            "args": [
+                "-NoLogo",
+                "-NoProfile",
+                "-Command",
+                ". \"${userHome}/code/DotFile/powershell/Scripts/leetgo-env.ps1\"; leetgo pick \"${input:problem}\""
+            ],
             "options": { "cwd": "${workspaceFolder}" },
             "presentation": { "reveal": "always", "panel": "shared", "clear": true },
             "problemMatcher": []
@@ -30,10 +35,30 @@
             "label": "leetgo test last",
             "detail": "用本機 g++ 跑 testcases.txt",
             "type": "shell",
-            "command": "leetgo",
-            "args": ["test", "last", "-L"],
+            "command": "pwsh",
+            "args": [
+                "-NoLogo",
+                "-NoProfile",
+                "-Command",
+                ". \"${userHome}/code/DotFile/powershell/Scripts/leetgo-env.ps1\"; leetgo test last -L"
+            ],
             "options": { "cwd": "${workspaceFolder}" },
             "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "leetgo login",
+            "detail": "貼上 Brave 的 LeetCode cookie（LEETCODE_SESSION / csrftoken / cf_clearance），存成環境變數",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoLogo",
+                "-NoProfile",
+                "-File",
+                "${userHome}/code/DotFile/powershell/Scripts/lc-login.ps1"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "presentation": { "reveal": "always", "panel": "dedicated", "focus": true, "clear": true },
             "problemMatcher": []
         }
     ],
