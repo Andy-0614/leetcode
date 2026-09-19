@@ -8,18 +8,32 @@ using namespace std;
 
 // @lc code=begin
 
-class Solution {
+class Solution
+{
 public:
-    vector<int> twoSum(vector<int>& nums, int target) {
-        
-    }
+	vector<int> twoSum(vector<int> &nums, int target)
+	{
+		unordered_map<int, int> um;
+		for (int i = 0; i < nums.size(); i += 1)
+		{
+			int complement = target - nums[i];
+			if (um.count(complement))
+			{
+				return {um[complement], i};
+			}
+			um[nums[i]] = i;
+		}
+		return {-1, -1};
+	}
 };
 
 // @lc code=end
 
-int main() {
+int main()
+{
 	ios_base::sync_with_stdio(false);
-	try {
+	try
+	{
 		vector<int> nums = LeetCodeIO::deserialize<vector<int>>(cin);
 		int target = LeetCodeIO::deserialize<int>(cin);
 
@@ -29,7 +43,9 @@ int main() {
 		stringstream out_stream;
 		LeetCodeIO::print(out_stream, res);
 		cout << "\noutput: " << out_stream.rdbuf() << '\n';
-	} catch (const LeetCodeIO::Error &error) {
+	}
+	catch (const LeetCodeIO::Error &error)
+	{
 		cerr << "LC_IO: " << error.what() << '\n';
 		return 2;
 	}
