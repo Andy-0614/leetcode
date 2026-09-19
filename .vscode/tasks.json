@@ -1,0 +1,47 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "lcs: leetgo submit + push",
+            "detail": "leetgo submit last，Accepted 才 git commit + push（Ctrl+Alt+S）",
+            "type": "shell",
+            "command": "pwsh",
+            "args": [
+                "-NoLogo",
+                "-NoProfile",
+                "-File",
+                "${userHome}/code/DotFile/powershell/Scripts/lcs.ps1"
+            ],
+            "options": { "cwd": "${workspaceFolder}" },
+            "presentation": { "reveal": "always", "panel": "dedicated", "focus": true, "clear": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "leetgo pick",
+            "detail": "輸入題號或 slug，產生 solution.cpp 並在 VSCode 開啟（Ctrl+Alt+P）",
+            "type": "shell",
+            "command": "leetgo",
+            "args": ["pick", "${input:problem}"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "leetgo test last",
+            "detail": "用本機 g++ 跑 testcases.txt",
+            "type": "shell",
+            "command": "leetgo",
+            "args": ["test", "last", "-L"],
+            "options": { "cwd": "${workspaceFolder}" },
+            "presentation": { "reveal": "always", "panel": "shared", "clear": true },
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "problem",
+            "type": "promptString",
+            "description": "LeetCode 題號或 slug（例如 1 或 two-sum；today = 每日一題）"
+        }
+    ]
+}
